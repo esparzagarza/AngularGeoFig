@@ -1,0 +1,113 @@
+<div class="row">
+  <div class="col-8">
+    <div class=" card">
+      <div class=" card-header text-center">
+        <h5 class=" title">Calcular el Area</h5>
+      </div>
+      <div class=" card-body">
+        <form (ngSubmit)="calculate()">
+          <div class=" row">
+            <div class="col-md-6">
+              <table class=" table">
+                <tbody>
+                  <tr *ngFor="let item of permittedFigures">
+                    <td class="text-center">
+                      <label class=" title">
+                        <p>
+                          <input class=" form-check-input" type="radio" [value]="item.name" [(ngModel)]="figure.name" />
+                          <span>{{ item.name }}</span>
+                        </p>
+                        <img style="width:80px;" src="assets/img/{{ item.name }}.png" />
+                        <p><span>{{ item.formula }}</span></p>
+                      </label>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class=" form-group">
+                    <label> Base </label>
+                    <input class=" form-control" type="number" step="1" name="base" #name="ngModel"
+                      [(ngModel)]="figure.base" />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class=" form-group">
+                    <label> Altura </label>
+                    <input class=" form-control" type="number" step="1" name="height" #name="ngModel"
+                      [(ngModel)]="figure.height" />
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class=" btn btn-fill btn-danger">Calcular</button>
+              <button type="button" class=" btn btn-fill btn-info" (click)="resetForm()">Limpiar</button>
+              <hr />
+              <ng-container *ngFor="let fig of permittedFigures">
+                <p class=" text-info" [hidden]="apiResponse.data.name != fig.name"> Formula = {{ fig.formula }} </p>
+              </ng-container>
+              <p class=" text-success"> Area = {{ apiResponse.data.area }} </p>
+              <hr />
+              <div class=" table" [hidden]="!apiResponse">
+                <table class=" table tablesorter">
+                  <tbody class=" text-primary">
+                    <tr>
+                      <td>Code</td>
+                      <td>{{ apiResponse.httpStatusCode | json }}</td>
+                    </tr>
+                    <tr>
+                      <td>Success</td>
+                      <td>{{ apiResponse.success | json }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="text-warning text-center">{{ apiResponse.message | json }}</p>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class=" card-footer text-center">
+        <div class=" card-description">
+          <p>Seleccione la Figura que desea calcular. Escriba los datos en los cuadros. Pulse el botón Calcular.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class=" col-md-4">
+    <div class=" card card-user">
+      <div class=" card-body">
+        <p class=" card-text"></p>
+        <div class=" author">
+          <div class=" block block-one"></div>
+          <div class=" block block-two"></div>
+          <div class=" block block-three"></div>
+          <div class=" block block-four"></div>
+          <a href="javascript:void(0)">
+            <img class=" avatar" src="assets/img/yo.jpg" />
+            <h5 class=" title">ESPARZA GARZA</h5>
+          </a>
+          <p class=" description">Systems Engineer<br />PHP Tech Lead | LAMP + A</p>
+          <hr />
+          <h2 class=" card-title">SCRIPT Demo</h2>
+        </div>
+      </div>
+      <div class=" card-footer">
+        <div class=" button-container">
+          <button class=" btn btn-icon btn-round btn-facebook">
+            <a target="_blank" href="https://www.facebook.com/ingesparzagarza"><i class=" fab fa-facebook"> </i></a>
+          </button>
+          <button class=" btn btn-icon btn-round btn-linkedin">
+            <a target="_blank" href="https://www.linkedin.com/in/isc-pedroesparza/"><i class=" fab fa-linkedin"></i></a>
+          </button>
+          <button class="btn btn-icon btn-round btn-calendar">
+            <a target="_blank" href="https://calendly.com/esparzagarza/15min"><i class=" fa fa-calendar"></i></a>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
