@@ -6,7 +6,7 @@ import { Figure } from "./models/figure";
 
 export class RepositoryService {
 
-    readonly baseUri = 'https://apigeofigcalculation.herokuapp.com/';
+    readonly baseUri = 'https://apigeofigcalculation.herokuapp.com';
 
     constructor(private http: HttpClient) { }
 
